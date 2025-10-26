@@ -2,9 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+//original
+// Route::get('/', function () {
+//     return Inertia::render('Welcome');
+// })->name('home');
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    return view('inicio');
 })->name('home');
 
 Route::get('dashboard', function () {
