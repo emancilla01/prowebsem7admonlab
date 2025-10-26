@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    @vite(['resources/js/app.ts'])
+    @vite(['resources/js/app2.ts'])
 </head>
 <body>
     <div class="row">
@@ -22,13 +22,13 @@
 
         <nav class="navbar fixed-bottom navbar-dark bg-primary">
         <div class="container-fluid justify-content-center">
-            <span class="navbar-text text-center w-100">
+            {{-- <span class="navbar-text text-center w-100">
                 <a href="https://laravel.com" target="_blank">LARAVEL</a>
                 <a href="https://getbootstrap.com" target="_blank"> - BOOTSTRAP</a>
                 <a href="https://www.php.net" target="_blank"> - PHP</a>
                 <a href="https://www.mysql.com" target="_blank"> - MYSQL</a>
                 <a href="https://vitejs.dev" target="_blank"> - VITE</a>
-            </span>
+            </span> --}}
         </div>
     </nav>
     </div>
