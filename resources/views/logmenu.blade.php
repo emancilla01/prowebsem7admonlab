@@ -1,7 +1,7 @@
 <nav
     class="navbar navbar-expand-sm navbar-dark bg-primary"
    >
-    <a class="navbar-brand" href="#">Comercializadora</a>
+    <a class="navbar-brand" href="#">Laboratorio</a>
     
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
