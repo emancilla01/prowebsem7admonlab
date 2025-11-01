@@ -58,8 +58,13 @@
         </table>
     </div>
 
-    <div class="d-flex justify-content-center">
-        {{ $personals->links() }}
+    <div class="d-flex justify-content-between align-items-center my-3">
+        <div class="text-muted">
+            Showing {{ $personals->firstItem() ?? 0 }} to {{ $personals->lastItem() ?? 0 }} of {{ $personals->total() }} results
+        </div>
+        <div>
+            {{ $personals->links('pagination::bootstrap-5') }}
+        </div>
     </div>
 </div>
 
