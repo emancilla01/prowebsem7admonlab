@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PersonalController;
 
 //original
 // Route::get('/', function () {
@@ -45,5 +46,10 @@ Route::get('/logout',function(){
     return redirect('/');
 });
 
+
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
+
+// Resource routes for Personal CRUD
+Route::resource('personal', PersonalController::class);

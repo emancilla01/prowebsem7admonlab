@@ -11,8 +11,8 @@
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/ubicaciones') }}" aria-current="page"
-                    >Ubicaciones <span class="visually-hidden">(current)</span></a
+                <a class="nav-link active" href="{{ url('/personal') }}" aria-current="page"
+                    >Personal <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
