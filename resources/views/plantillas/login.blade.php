@@ -22,13 +22,14 @@
 
         <nav class="navbar fixed-bottom navbar-dark bg-primary">
         <div class="container-fluid justify-content-center">
-            {{-- <span class="navbar-text text-center w-100">
+            <span class="navbar-text text-center w-100">
                 <a href="https://laravel.com" target="_blank">LARAVEL</a>
                 <a href="https://getbootstrap.com" target="_blank"> - BOOTSTRAP</a>
                 <a href="https://www.php.net" target="_blank"> - PHP</a>
                 <a href="https://www.mysql.com" target="_blank"> - MYSQL</a>
                 <a href="https://vitejs.dev" target="_blank"> - VITE</a>
-            </span> --}}
+            </span>
+            <div>Derechos Reservados</div>
         </div>
     </nav>
     </div>

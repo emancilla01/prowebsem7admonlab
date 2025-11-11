@@ -1,7 +1,12 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #f8f8fc;
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+// Theme color - primary (added per user request)
+// ASSUMPTION: user approved change but didn't specify a color, using a sensible default.
+// Change this value if you want a different primary color.
+$primary: #0b4d6b;
