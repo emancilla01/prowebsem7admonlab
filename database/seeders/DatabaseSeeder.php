@@ -34,5 +34,8 @@ class DatabaseSeeder extends Seeder
     
     // Seed Espacios de trabajo
     $this->call(\Database\Seeders\EspacioTrabajoSeeder::class);
+
+    // Seed Software
+    $this->call(\Database\Seeders\SoftwareSeeder::class);
     }
 }

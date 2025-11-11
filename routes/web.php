@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\EspacioTrabajoController;
+use App\Http\Controllers\SoftwareController;
 
 //original
 // Route::get('/', function () {
@@ -71,3 +72,6 @@ Route::resource('carreras', CarreraController::class);
 // Keep the route parameter named 'espacio_trabajo' so the controller's method signatures continue to work.
 Route::resource('espaciosdetrabajo', EspacioTrabajoController::class)
     ->parameters(['espaciosdetrabajo' => 'espacio_trabajo']);
+    
+// Resource routes for Software (CRUD)
+Route::resource('software', SoftwareController::class);
