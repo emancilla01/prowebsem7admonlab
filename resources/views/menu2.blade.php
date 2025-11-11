@@ -18,18 +18,23 @@
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/inventario') }}" aria-current="page"
-                    >Inventario <span class="visually-hidden">(current)</span></a
+                <a class="nav-link active" href="{{ url('/periodos') }}" aria-current="page"
+                    >Periodos <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/movimientos') }}" aria-current="page"
-                    >Movimientos <span class="visually-hidden">(current)</span></a
+                <a class="nav-link active" href="{{ url('/carreras') }}" aria-current="page"
+                    >Carreras <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/clasificacion') }}" aria-current="page"
-                    >Clasificacion <span class="visually-hidden">(current)</span></a
+                <a class="nav-link active" href="{{ url('/espaciosdetrabajo') }}" aria-current="page"
+                    >Espacios de Trabajo <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url('/software') }}" aria-current="page"
+                    >Software <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
