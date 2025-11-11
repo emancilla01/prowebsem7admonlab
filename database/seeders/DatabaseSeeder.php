@@ -20,7 +20,19 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        // Seed Personal records
-        $this->call(PersonalSeeder::class);
+    // Seed Personal records
+    $this->call(PersonalSeeder::class);
+
+    // Seed Categorias
+    $this->call(\Database\Seeders\CategoriaSeeder::class);
+
+    // Seed Periodos
+    $this->call(\Database\Seeders\PeriodoSeeder::class);
+
+    // Seed Carreras
+    $this->call(\Database\Seeders\CarreraSeeder::class);
+    
+    // Seed Espacios de trabajo
+    $this->call(\Database\Seeders\EspacioTrabajoSeeder::class);
     }
 }

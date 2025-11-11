@@ -5,6 +5,10 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\PeriodoController;
+use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\EspacioTrabajoController;
 
 //original
 // Route::get('/', function () {
@@ -53,3 +57,17 @@ require __DIR__.'/auth.php';
 
 // Resource routes for Personal CRUD
 Route::resource('personal', PersonalController::class);
+
+// Resource routes for Categorias (CRUD)
+Route::resource('categorias', CategoriaController::class);
+// Resource routes for Periodos (CRUD)
+Route::resource('periodos', PeriodoController::class);
+
+// Resource routes for Carreras (CRUD)
+Route::resource('carreras', CarreraController::class);
+
+// Resource routes for Espacios de trabajo (CRUD)
+// Use the plural path 'espaciosdetrabajo' to match existing menu links.
+// Keep the route parameter named 'espacio_trabajo' so the controller's method signatures continue to work.
+Route::resource('espaciosdetrabajo', EspacioTrabajoController::class)
+    ->parameters(['espaciosdetrabajo' => 'espacio_trabajo']);
