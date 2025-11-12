@@ -48,10 +48,10 @@
             <input
                 class="form-control me-sm-2"
                 type="text"
-                placeholder="Search"
+                placeholder="Buscar nombre"
             />
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                Search
+                Buscar
             </button>
         </form>
     </div>
