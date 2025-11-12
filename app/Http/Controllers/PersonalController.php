@@ -23,6 +23,15 @@ class PersonalController extends Controller
                   ->orWhere('email', 'like', "%{$q}%");
         }
 
+        // Sorting support: ?sort=nombre&dir=asc|desc
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre') {
+            $query->orderBy('nombre', $dir);
+        } elseif ($sort === 'created_at') {
+            $query->orderBy('created_at', $dir);
+        }
+
         $personals = $query->paginate(5)->withQueryString();
 
         return view('personal.index', compact('personals'));

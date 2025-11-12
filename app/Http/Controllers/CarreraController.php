@@ -22,6 +22,15 @@ class CarreraController extends Controller
                   ->orWhere('coordinador', 'like', "%{$q}%");
         }
 
+        // Sorting support: map 'nombre' to nombre_carrera
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre') {
+            $query->orderBy('nombre_carrera', $dir);
+        } elseif ($sort === 'clave') {
+            $query->orderBy('clave_carrera', $dir);
+        }
+
         $carreras = $query->paginate(5)->withQueryString();
 
         return view('carreras.index', compact('carreras'));

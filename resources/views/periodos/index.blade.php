@@ -26,7 +26,16 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nombre</th>
+                    @php
+                        $nombreDir = request('sort') === 'nombre' && request('dir') === 'asc' ? 'desc' : 'asc';
+                    @endphp
+                    <th>
+                        <a class="btn btn-sm btn-outline-secondary" role="button" aria-label="Ordenar por Nombre" href="{{ route('periodos.index', array_merge(request()->query(), ['sort' => 'nombre', 'dir' => $nombreDir])) }}">Nombre
+                            @if(request('sort') === 'nombre')
+                                @if(request('dir') === 'asc') ▲ @else ▼ @endif
+                            @endif
+                        </a>
+                    </th>
                     <th>Inicio</th>
                     <th>Fin</th>
                     <th>Acciones</th>

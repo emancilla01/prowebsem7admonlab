@@ -20,6 +20,15 @@ class PeriodoController extends Controller
             $query->where('nombre', 'like', "%{$q}%");
         }
 
+        // Sorting support
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre') {
+            $query->orderBy('nombre', $dir);
+        } elseif ($sort === 'created_at') {
+            $query->orderBy('created_at', $dir);
+        }
+
         $periodos = $query->paginate(5)->withQueryString();
 
         return view('periodos.index', compact('periodos'));

@@ -12,7 +12,27 @@ class SoftwareController extends Controller
      */
     public function index()
     {
-        $softwares = Software::paginate(5);
+        // Support a simple GET search via ?q=... that searches nombre_software, version and proveedor
+        $q = request()->input('q');
+
+        $query = Software::query();
+        if ($q) {
+            $query->where('nombre_software', 'like', "%{$q}%")
+                  ->orWhere('version', 'like', "%{$q}%")
+                  ->orWhere('proveedor', 'like', "%{$q}%");
+        }
+
+        // Sorting support: map 'nombre' to nombre_software
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre') {
+            $query->orderBy('nombre_software', $dir);
+        } elseif ($sort === 'version') {
+            $query->orderBy('version', $dir);
+        }
+
+        $softwares = $query->paginate(5)->withQueryString();
+
         return view('software.index', compact('softwares'));
     }
 

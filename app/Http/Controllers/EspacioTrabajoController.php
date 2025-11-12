@@ -12,7 +12,27 @@ class EspacioTrabajoController extends Controller
      */
     public function index()
     {
-        $espacios = EspacioTrabajo::paginate(5);
+        // Support GET search via ?q=... searching nombre, tipo and ubicacion
+        $q = request()->input('q');
+
+        $query = EspacioTrabajo::query();
+        if ($q) {
+            $query->where('nombre_espacio', 'like', "%{$q}%")
+                  ->orWhere('tipo_espacio', 'like', "%{$q}%")
+                  ->orWhere('ubicacion', 'like', "%{$q}%");
+        }
+
+        // Sorting support: map 'nombre' to nombre_espacio
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre') {
+            $query->orderBy('nombre_espacio', $dir);
+        } elseif ($sort === 'tipo') {
+            $query->orderBy('tipo_espacio', $dir);
+        }
+
+        $espacios = $query->paginate(5)->withQueryString();
+
         return view('espaciosdetrabajo.index', compact('espacios'));
     }
 

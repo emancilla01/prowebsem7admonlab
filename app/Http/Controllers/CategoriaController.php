@@ -21,6 +21,15 @@ class CategoriaController extends Controller
                   ->orWhere('descripcion', 'like', "%{$q}%");
         }
 
+        // Sorting: ?sort=nombre&dir=asc|desc
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre') {
+            $query->orderBy('nombre', $dir);
+        } elseif ($sort === 'created_at') {
+            $query->orderBy('created_at', $dir);
+        }
+
         $categorias = $query->paginate(5)->withQueryString();
 
         return view('categorias.index', compact('categorias'));
