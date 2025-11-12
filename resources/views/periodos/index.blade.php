@@ -9,6 +9,14 @@
         <a href="{{ route('periodos.create') }}" class="btn btn-primary">Nuevo registro</a>
     </div>
 
+    {{-- Search form (reusable partial) --}}
+    @include('partials.search_form', [
+        'action' => route('periodos.index'),
+        'name' => 'q',
+        'placeholder' => 'Buscar periodos',
+        'buttonText' => 'Buscar'
+    ])
+
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif

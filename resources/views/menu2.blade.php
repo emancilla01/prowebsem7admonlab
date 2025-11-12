@@ -44,7 +44,7 @@
             </li>
             
         </ul>
-        <form class="d-flex my-2 my-lg-0">
+        {{-- <form class="d-flex my-2 my-lg-0">
             <input
                 class="form-control me-sm-2"
                 type="text"
@@ -53,6 +53,6 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
                 Buscar
             </button>
-        </form>
+        </form> --}}
     </div>
 </nav>

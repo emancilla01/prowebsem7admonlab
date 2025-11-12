@@ -12,8 +12,19 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        // No explicit sorting requested — use default ordering and paginate 5 per page
-        $personals = Personal::paginate(5);
+        // Support a simple GET search via ?q=... that searches nombre, apellido and email.
+        $q = request()->input('q');
+
+        $query = Personal::query();
+        if ($q) {
+            $query->where('nombre', 'like', "%{$q}%")
+                  ->orWhere('apellido_pat', 'like', "%{$q}%")
+                  ->orWhere('apellido_mat', 'like', "%{$q}%")
+                  ->orWhere('email', 'like', "%{$q}%");
+        }
+
+        $personals = $query->paginate(5)->withQueryString();
+
         return view('personal.index', compact('personals'));
     }
 

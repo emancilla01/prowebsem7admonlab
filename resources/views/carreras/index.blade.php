@@ -9,6 +9,14 @@
         <a href="{{ route('carreras.create') }}" class="btn btn-primary">Nuevo registro</a>
     </div>
 
+    {{-- Search form (reusable partial) --}}
+    @include('partials.search_form', [
+        'action' => route('carreras.index'),
+        'name' => 'q',
+        'placeholder' => 'Buscar carreras',
+        'buttonText' => 'Buscar'
+    ])
+
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif

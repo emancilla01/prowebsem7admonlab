@@ -12,7 +12,18 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        $carreras = Carrera::paginate(5);
+        // Support a simple GET search via ?q=... that searches nombre_clase, clave and coordinator
+        $q = request()->input('q');
+
+        $query = Carrera::query();
+        if ($q) {
+            $query->where('nombre_carrera', 'like', "%{$q}%")
+                  ->orWhere('clave_carrera', 'like', "%{$q}%")
+                  ->orWhere('coordinador', 'like', "%{$q}%");
+        }
+
+        $carreras = $query->paginate(5)->withQueryString();
+
         return view('carreras.index', compact('carreras'));
     }
 

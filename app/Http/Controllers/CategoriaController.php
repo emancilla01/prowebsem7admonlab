@@ -12,7 +12,17 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::paginate(5);
+        // Support a simple GET search via ?q=... that searches nombre and descripcion.
+        $q = request()->input('q');
+
+        $query = Categoria::query();
+        if ($q) {
+            $query->where('nombre', 'like', "%{$q}%")
+                  ->orWhere('descripcion', 'like', "%{$q}%");
+        }
+
+        $categorias = $query->paginate(5)->withQueryString();
+
         return view('categorias.index', compact('categorias'));
     }
 

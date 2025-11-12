@@ -12,7 +12,16 @@ class PeriodoController extends Controller
      */
     public function index()
     {
-        $periodos = Periodo::paginate(5);
+        // Support a simple GET search via ?q=... that searches nombre
+        $q = request()->input('q');
+
+        $query = Periodo::query();
+        if ($q) {
+            $query->where('nombre', 'like', "%{$q}%");
+        }
+
+        $periodos = $query->paginate(5)->withQueryString();
+
         return view('periodos.index', compact('periodos'));
     }
 
