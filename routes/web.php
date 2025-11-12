@@ -10,6 +10,7 @@ use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\EspacioTrabajoController;
 use App\Http\Controllers\SoftwareController;
+use App\Http\Controllers\ExplicacionController;
 
 //original
 // Route::get('/', function () {
@@ -51,7 +52,8 @@ Route::get('/logout',function(){
     return redirect('/');
 });
 
-
+// Allow visiting /explicacion with or without a carrera parameter
+Route::get('/explicacion/{carrera?}',[ExplicacionController::class,'ver'])->name('explicacion');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
