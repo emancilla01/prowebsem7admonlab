@@ -49,12 +49,12 @@
                         <td>{{ \Illuminate\Support\Str::limit($categoria->descripcion, 80) }}</td>
                         <td>{{ $categoria->created_at?->format('Y-m-d') }}</td>
                         <td>
-                            <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
-                            <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                            <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-sm btn-outline-secondary" title="Ver" aria-label="Ver registro">👁️</a>
+                            <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-sm btn-outline-primary" title="Editar" aria-label="Editar registro">✏️</a>
                             <form action="{{ route('categorias.destroy', $categoria) }}" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar este registro?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                <button class="btn btn-sm btn-danger" title="Eliminar" aria-label="Eliminar registro">🗑️</button>
                             </form>
                         </td>
                     </tr>

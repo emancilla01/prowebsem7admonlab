@@ -49,12 +49,12 @@
                         <td>{{ $periodo->fecha_inicio }}</td>
                         <td>{{ $periodo->fecha_fin }}</td>
                         <td>
-                            <a href="{{ route('periodos.show', $periodo) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
-                            <a href="{{ route('periodos.edit', $periodo) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                            <a href="{{ route('periodos.show', $periodo) }}" class="btn btn-sm btn-outline-secondary" title="Ver" aria-label="Ver registro">👁️</a>
+                            <a href="{{ route('periodos.edit', $periodo) }}" class="btn btn-sm btn-outline-primary" title="Editar" aria-label="Editar registro">✏️</a>
                             <form action="{{ route('periodos.destroy', $periodo) }}" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar este registro?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                <button class="btn btn-sm btn-danger" title="Eliminar" aria-label="Eliminar registro">🗑️</button>
                             </form>
                         </td>
                     </tr>

@@ -49,12 +49,12 @@
                         <td>{{ $carrera->clave_carrera }}</td>
                         <td>{{ $carrera->coordinador }}</td>
                         <td>
-                            <a href="{{ route('carreras.show', $carrera) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
-                            <a href="{{ route('carreras.edit', $carrera) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                            <a href="{{ route('carreras.show', $carrera) }}" class="btn btn-sm btn-outline-secondary" title="Ver" aria-label="Ver registro">👁️</a>
+                            <a href="{{ route('carreras.edit', $carrera) }}" class="btn btn-sm btn-outline-primary" title="Editar" aria-label="Editar registro">✏️</a>
                             <form action="{{ route('carreras.destroy', $carrera) }}" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar este registro?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                <button class="btn btn-sm btn-danger" title="Eliminar" aria-label="Eliminar registro">🗑️</button>
                             </form>
                         </td>
                     </tr>

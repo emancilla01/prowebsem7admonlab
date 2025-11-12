@@ -57,12 +57,12 @@
                         <td>{{ $personal->sexo }}</td>
                         <td>{{ $personal->depto }}</td>
                         <td>
-                            <a href="{{ route('personal.show', $personal) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
-                            <a href="{{ route('personal.edit', $personal) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                            <a href="{{ route('personal.show', $personal) }}" class="btn btn-sm btn-outline-secondary" title="Ver" aria-label="Ver registro">👁️</a>
+                            <a href="{{ route('personal.edit', $personal) }}" class="btn btn-sm btn-outline-primary" title="Editar" aria-label="Editar registro">✏️</a>
                             <form action="{{ route('personal.destroy', $personal) }}" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar este registro?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                <button class="btn btn-sm btn-danger" title="Eliminar" aria-label="Eliminar registro">🗑️</button>
                             </form>
                         </td>
                     </tr>
