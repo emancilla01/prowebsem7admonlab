@@ -1,54 +1,54 @@
 <nav
     class="navbar navbar-expand-sm navbar-dark bg-primary"
    >
-    <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/') }}">
-        <img src="{{ asset('logo.png') }}" alt="Logo" style="height:56px;" />        
+    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo e(url('/')); ?>">
+        <img src="<?php echo e(asset('logo.png')); ?>" alt="Logo" style="height:56px;" />        
     </a>
     
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/categorias') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(url('/categorias')); ?>" aria-current="page"
                     >Categorias <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/personal') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(url('/personal')); ?>" aria-current="page"
                     >Personal <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/periodos') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(url('/periodos')); ?>" aria-current="page"
                     >Periodos <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/carreras') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(url('/carreras')); ?>" aria-current="page"
                     >Carreras <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/materias') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(url('/materias')); ?>" aria-current="page"
                     >Materias <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/grupos') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(url('/grupos')); ?>" aria-current="page"
                     >Grupos <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/espaciosdetrabajo') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(url('/espaciosdetrabajo')); ?>" aria-current="page"
                     >Espacios de Trabajo <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url('/software') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(url('/software')); ?>" aria-current="page"
                     >Software <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('ecm_equcommob.index') }}" aria-current="page"
+                <a class="nav-link active" href="<?php echo e(route('ecm_equcommob.index')); ?>" aria-current="page"
                     >ECM - Inventario <span class="visually-hidden">(current)</span></a
                 >
             </li>
@@ -59,15 +59,6 @@
             </li>
             
         </ul>
-        {{-- <form class="d-flex my-2 my-lg-0">
-            <input
-                class="form-control me-sm-2"
-                type="text"
-                placeholder="Buscar nombre"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                Buscar
-            </button>
-        </form> --}}
+        
     </div>
-</nav>
+</nav><?php /**PATH C:\Users\Usuario\Herd\admonlab\resources\views/menu2.blade.php ENDPATH**/ ?>

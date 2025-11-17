@@ -14,6 +14,7 @@ use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\GrupoAlumnoController;
 use App\Http\Controllers\GrupoLabController;
+use App\Http\Controllers\EcmEqucommobController;
 
 //original
 // Route::get('/', function () {
@@ -87,3 +88,8 @@ Route::resource('grupos', GrupoController::class);
 // Nested resource routes for Grupo alumnos and labs (shallow routing)
 Route::resource('grupos.alumnos', GrupoAlumnoController::class)->shallow();
 Route::resource('grupos.labs', GrupoLabController::class)->shallow();
+// Resource routes for ECM inventory
+Route::resource('ecm_equcommob', EcmEqucommobController::class)->shallow();
+// Sub-CRUDes for ECM details
+Route::resource('ecm_detequcom', App\Http\Controllers\EcmDetequcomController::class)->shallow();
+Route::resource('ecm_detmob', App\Http\Controllers\EcmDetmobController::class)->shallow();
