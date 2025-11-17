@@ -13,7 +13,7 @@ class CarreraFactory extends Factory
     {
         return [
             'nombre_carrera' => $this->faker->unique()->words(2, true),
-            'clave_carrera' => strtoupper($this->faker->unique()->bothify('??###')),
+            'clave_carrera' => strtoupper($this->faker->unique()->bothify('CRR-###')),
             'coordinador' => $this->faker->name(),
         ];
     }

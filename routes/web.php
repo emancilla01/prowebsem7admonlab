@@ -10,6 +10,7 @@ use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\EspacioTrabajoController;
 use App\Http\Controllers\SoftwareController;
+use App\Http\Controllers\MateriaController;
 
 //original
 // Route::get('/', function () {
@@ -75,3 +76,6 @@ Route::resource('espaciosdetrabajo', EspacioTrabajoController::class)
     
 // Resource routes for Software (CRUD)
 Route::resource('software', SoftwareController::class);
+
+// Resource routes for Materias (CRUD)
+Route::resource('materias', MateriaController::class);
