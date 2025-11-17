@@ -44,5 +44,9 @@ class DatabaseSeeder extends Seeder
     $this->call(\Database\Seeders\GrupoAlumnoSeeder::class);
     // Seed ECM equcommob
     $this->call(\Database\Seeders\EcmEqucommobSeeder::class);
+    // Seed ECM detalle equipo
+    $this->call(\Database\Seeders\EcmDetequcomSeeder::class);
+    // Seed ECM detalle mobiliario
+    $this->call(\Database\Seeders\EcmDetmobSeeder::class);
     }
 }

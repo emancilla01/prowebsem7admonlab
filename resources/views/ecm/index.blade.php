@@ -48,6 +48,9 @@
                         <td>{{ $ecm->descripcion }}</td>
                         <td>{{ $ecm->categoria?->nombre }}</td>
                         <td>
+                            <a href="{{ route('ecm_detequcom.index', ['id_ecm' => $ecm->id]) }}" class="btn btn-sm btn-outline-info" title="Equipo">💻</a>
+                            <a href="{{ route('ecm_detmob.index', ['id_ecm' => $ecm->id]) }}" class="btn btn-sm btn-outline-warning" title="Mobiliario">🪑</a>
+
                             <a href="{{ route('ecm_equcommob.show', $ecm->id) }}" class="btn btn-sm btn-outline-secondary" title="Ver">👁️</a>
                             <a href="{{ route('ecm_equcommob.edit', $ecm->id) }}" class="btn btn-sm btn-outline-primary" title="Editar">✏️</a>
                             <form action="{{ route('ecm_equcommob.destroy', $ecm->id) }}" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar este recurso?');">

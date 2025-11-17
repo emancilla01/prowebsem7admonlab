@@ -11,10 +11,29 @@ class EcmDetmobController extends Controller
     public function index(Request $request)
     {
         $id_ecm = $request->input('id_ecm');
+        $q = $request->input('q');
+        $sort = $request->input('sort');
+        $dir = $request->input('dir') === 'asc' ? 'asc' : 'desc';
+        $allowed = ['codigo', 'descripcion', 'material', 'estado', 'id'];
+
         $query = EcmDetmob::query();
         if ($id_ecm) {
             $query->where('id_ecm', $id_ecm);
         }
+        if ($q) {
+            $query->where(function($sub) use ($q) {
+                $sub->where('codigo', 'like', "%{$q}%")
+                    ->orWhere('descripcion', 'like', "%{$q}%")
+                    ->orWhere('material', 'like', "%{$q}%");
+            });
+        }
+
+        if ($sort && in_array($sort, $allowed)) {
+            $query->orderBy($sort, $dir);
+        } else {
+            $query->orderBy('id', 'desc');
+        }
+
         $items = $query->paginate(10)->withQueryString();
         return view('ecmdetm.index', compact('items', 'id_ecm'));
     }

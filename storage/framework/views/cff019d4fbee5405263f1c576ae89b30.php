@@ -47,6 +47,9 @@
                         <td><?php echo e($ecm->descripcion); ?></td>
                         <td><?php echo e($ecm->categoria?->nombre); ?></td>
                         <td>
+                            <a href="<?php echo e(route('ecm_detequcom.index', ['id_ecm' => $ecm->id])); ?>" class="btn btn-sm btn-outline-info" title="Equipo">💻</a>
+                            <a href="<?php echo e(route('ecm_detmob.index', ['id_ecm' => $ecm->id])); ?>" class="btn btn-sm btn-outline-warning" title="Mobiliario">🪑</a>
+
                             <a href="<?php echo e(route('ecm_equcommob.show', $ecm->id)); ?>" class="btn btn-sm btn-outline-secondary" title="Ver">👁️</a>
                             <a href="<?php echo e(route('ecm_equcommob.edit', $ecm->id)); ?>" class="btn btn-sm btn-outline-primary" title="Editar">✏️</a>
                             <form action="<?php echo e(route('ecm_equcommob.destroy', $ecm->id)); ?>" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar este recurso?');">

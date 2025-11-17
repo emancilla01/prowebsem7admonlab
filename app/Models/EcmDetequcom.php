@@ -13,6 +13,7 @@ class EcmDetequcom extends Model
 
     protected $fillable = [
         'id_ecm',
+        'id_espacio',
         'serial',
         'modelo',
         'marca',
@@ -29,5 +30,10 @@ class EcmDetequcom extends Model
     public function ecm()
     {
         return $this->belongsTo(EcmEqucommob::class, 'id_ecm');
+    }
+
+    public function espacio()
+    {
+        return $this->belongsTo(EspacioTrabajo::class, 'id_espacio');
     }
 }

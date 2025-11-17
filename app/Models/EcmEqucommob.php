@@ -41,4 +41,16 @@ class EcmEqucommob extends Model
     {
         return $this->hasMany(EcmDetmob::class, 'id_ecm');
     }
+
+    // Alias methods with more descriptive names for clarity.
+    // Keep the original method names for backward compatibility.
+    public function detallesEquipo()
+    {
+        return $this->hasMany(EcmDetequcom::class, 'id_ecm');
+    }
+
+    public function detallesMobiliario()
+    {
+        return $this->hasMany(EcmDetmob::class, 'id_ecm');
+    }
 }
