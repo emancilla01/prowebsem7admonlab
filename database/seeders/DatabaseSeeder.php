@@ -40,5 +40,7 @@ class DatabaseSeeder extends Seeder
 
     // Seed GrupoLabs
     $this->call(\Database\Seeders\GrupoLabSeeder::class);
+    // Seed GrupoAlumnos
+    $this->call(\Database\Seeders\GrupoAlumnoSeeder::class);
     }
 }

@@ -10,25 +10,75 @@ class GrupoAlumnoController extends Controller
 {
     public function index(Grupo $grupo)
     {
-        $alumnos = GrupoAlumno::where('id_grupo', $grupo->id)->paginate(10)->withQueryString();
-        return view('grupos.alumnos.index', compact('grupo', 'alumnos'));
+        $q = request()->input('q');
+
+        $query = GrupoAlumno::where('id_grupo', $grupo->id)->with('grupo');
+
+        if ($q) {
+            $query->where(function($sub) use ($q) {
+                $sub->where('matricula', 'like', "%{$q}%")
+                    ->orWhere('nombre_alumno', 'like', "%{$q}%");
+            });
+        }
+
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre_alumno') {
+            $query->orderBy('nombre_alumno', $dir);
+        } else {
+            $query->orderBy('id', 'asc');
+        }
+
+        $alumnos = $query->paginate(5)->withQueryString();
+
+        return view('gruposalumnos.index', compact('grupo', 'alumnos'));
     }
 
     public function create(Grupo $grupo)
     {
-        return view('grupos.alumnos.create', compact('grupo'));
+        $grupos = Grupo::pluck('nombre_grupo', 'id');
+        return view('gruposalumnos.create', compact('grupo', 'grupos'));
     }
 
     public function store(Request $request, Grupo $grupo)
     {
         $data = $request->validate([
-            'alumno_nombre' => 'required|string|max:255',
-            'alumno_matricula' => 'required|string|max:100',
+            'id_grupo' => ['required', 'exists:grupos,id'],
+            'matricula' => ['required', 'string', 'max:30'],
+            'nombre_alumno' => ['required', 'string', 'max:150'],
         ]);
+
         $data['id_grupo'] = $grupo->id;
         GrupoAlumno::create($data);
 
         return redirect()->route('grupos.alumnos.index', $grupo)->with('success', 'Alumno agregado.');
+    }
+
+    public function edit(GrupoAlumno $alumno)
+    {
+        $grupo = $alumno->grupo;
+        $grupos = Grupo::pluck('nombre_grupo', 'id');
+        return view('gruposalumnos.edit', compact('alumno', 'grupo', 'grupos'));
+    }
+
+    public function update(Request $request, GrupoAlumno $alumno)
+    {
+        $data = $request->validate([
+            'id_grupo' => ['required', 'exists:grupos,id'],
+            'matricula' => ['required', 'string', 'max:30'],
+            'nombre_alumno' => ['required', 'string', 'max:150'],
+        ]);
+
+        $alumno->update($data);
+
+        return redirect()->route('grupos.alumnos.index', $alumno->grupo)->with('success', 'Alumno actualizado.');
+    }
+
+    public function show(GrupoAlumno $alumno)
+    {
+        $alumno->load('grupo');
+        $grupo = $alumno->grupo;
+        return view('gruposalumnos.show', compact('alumno', 'grupo'));
     }
 
     public function destroy(GrupoAlumno $alumno)

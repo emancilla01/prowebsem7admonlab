@@ -13,12 +13,12 @@ class GrupoAlumno extends Model
 
     protected $fillable = [
         'id_grupo',
-        'alumno_nombre',
-        'alumno_matricula',
+        'matricula',
+        'nombre_alumno',
     ];
 
     public function grupo()
     {
-        return $this->belongsTo(Grupo::class, 'id_grupo');
+        return $this->belongsTo(Grupo::class, 'id_grupo', 'id');
     }
 }
