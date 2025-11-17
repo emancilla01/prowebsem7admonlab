@@ -11,6 +11,9 @@ use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\EspacioTrabajoController;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\GrupoAlumnoController;
+use App\Http\Controllers\GrupoLabController;
 
 //original
 // Route::get('/', function () {
@@ -79,3 +82,8 @@ Route::resource('software', SoftwareController::class);
 
 // Resource routes for Materias (CRUD)
 Route::resource('materias', MateriaController::class);
+// Resource routes for Grupos
+Route::resource('grupos', GrupoController::class);
+// Nested resource routes for Grupo alumnos and labs (shallow routing)
+Route::resource('grupos.alumnos', GrupoAlumnoController::class)->shallow();
+Route::resource('grupos.labs', GrupoLabController::class)->shallow();

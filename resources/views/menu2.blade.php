@@ -33,6 +33,11 @@
                 >
             </li>
             <li class="nav-item">
+                <a class="nav-link active" href="{{ url('/grupos') }}" aria-current="page"
+                    >Grupos <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="{{ url('/espaciosdetrabajo') }}" aria-current="page"
                     >Espacios de Trabajo <span class="visually-hidden">(current)</span></a
                 >

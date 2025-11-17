@@ -37,5 +37,8 @@ class DatabaseSeeder extends Seeder
 
     // Seed Software
     $this->call(\Database\Seeders\SoftwareSeeder::class);
+
+    // Seed GrupoLabs
+    $this->call(\Database\Seeders\GrupoLabSeeder::class);
     }
 }
