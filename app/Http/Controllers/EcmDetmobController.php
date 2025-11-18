@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EcmDetmob;
+use App\Models\EspacioTrabajo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,7 +17,7 @@ class EcmDetmobController extends Controller
         $dir = $request->input('dir') === 'asc' ? 'asc' : 'desc';
         $allowed = ['codigo', 'descripcion', 'material', 'estado', 'id'];
 
-        $query = EcmDetmob::query();
+        $query = EcmDetmob::query()->with('espacio');
         if ($id_ecm) {
             $query->where('id_ecm', $id_ecm);
         }
@@ -41,13 +42,15 @@ class EcmDetmobController extends Controller
     public function create(Request $request)
     {
         $id_ecm = $request->input('id_ecm');
-        return view('ecmdetm.create', compact('id_ecm'));
+        $espacios = EspacioTrabajo::pluck('nombre_espacio', 'id_espacio');
+        return view('ecmdetm.create', compact('id_ecm', 'espacios'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'id_ecm' => ['required', 'exists:ecm_equcommob,id'],
+            'id_espacio' => ['required', 'exists:espacios_trabajo,id_espacio'],
             'codigo' => ['nullable', 'string', 'max:100'],
             'descripcion' => ['nullable', 'string', 'max:200'],
             'material' => ['nullable', 'string', 'max:100'],
@@ -63,19 +66,21 @@ class EcmDetmobController extends Controller
     public function show(EcmDetmob $ecm_detmob)
     {
         $item = $ecm_detmob;
-        $item->load('ecm');
+        $item->load('ecm','espacio');
         return view('ecmdetm.show', compact('item'));
     }
 
     public function edit(EcmDetmob $ecm_detmob)
     {
         $item = $ecm_detmob;
-        return view('ecmdetm.edit', compact('item'));
+        $espacios = EspacioTrabajo::pluck('nombre_espacio', 'id_espacio');
+        return view('ecmdetm.edit', compact('item', 'espacios'));
     }
 
     public function update(Request $request, EcmDetmob $ecm_detmob)
     {
         $data = $request->validate([
+            'id_espacio' => ['required', 'exists:espacios_trabajo,id_espacio'],
             'codigo' => ['nullable', 'string', 'max:100'],
             'descripcion' => ['nullable', 'string', 'max:200'],
             'material' => ['nullable', 'string', 'max:100'],

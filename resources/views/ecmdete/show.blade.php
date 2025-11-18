@@ -15,6 +15,8 @@
     <div class="mb-3"><strong>Fecha adquisición:</strong> {{ $item->fecha_adquisicion }}</div>
     <div class="mb-3"><strong>Ubicación:</strong> {{ $item->ubicacion }}</div>
 
+    <div class="mb-3"><strong>Espacio:</strong> {{ $item->espacio?->nombre_espacio }}</div>
+
     <div class="mt-3">
         <a href="{{ route('ecm_detequcom.index', ['id_ecm' => $item->id_ecm]) }}" class="btn btn-secondary">Volver</a>
         <a href="{{ route('ecm_detequcom.edit', $item->id) }}" class="btn btn-primary">Editar</a>

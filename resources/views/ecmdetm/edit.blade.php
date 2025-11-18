@@ -50,6 +50,16 @@
             @error('ubicacion') <div class="text-danger">{{ $message }}</div> @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="id_espacio" class="form-label">Espacio</label>
+            <select id="id_espacio" name="id_espacio" class="form-select">
+                @foreach($espacios as $id => $nombre)
+                    <option value="{{ $id }}" {{ (old('id_espacio', $item->id_espacio) == $id) ? 'selected' : '' }}>{{ $nombre }}</option>
+                @endforeach
+            </select>
+            @error('id_espacio') <div class="text-danger">{{ $message }}</div> @enderror
+        </div>
+
         <a href="{{ route('ecm_detmob.index', ['id_ecm' => $item->id_ecm]) }}" class="btn btn-secondary">Cancelar</a>
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>

@@ -36,6 +36,7 @@
                         </a>
                     </th>
                     <th>Modelo</th>
+                    <th>Espacio</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -46,6 +47,7 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->serial }}</td>
                         <td>{{ $item->modelo }}</td>
+                        <td>{{ $item->espacio?->nombre_espacio }}</td>
                         <td>{{ $item->estado }}</td>
                         <td>
                             <a href="{{ route('ecm_detequcom.show', $item) }}" class="btn btn-sm btn-outline-secondary" title="Ver" aria-label="Ver">👁️</a>
@@ -59,7 +61,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">No hay registros.</td>
+                        <td colspan="7">No hay registros.</td>
                     </tr>
                 @endforelse
             </tbody>

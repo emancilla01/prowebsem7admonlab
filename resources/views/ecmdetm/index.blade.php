@@ -36,6 +36,7 @@
                         </a>
                     </th>
                     <th>Descripción</th>
+                    <th>Espacio</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -46,6 +47,7 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->codigo }}</td>
                         <td>{{ $item->descripcion }}</td>
+                        <td>{{ $item->espacio?->nombre_espacio }}</td>
                         <td>{{ $item->estado }}</td>
                         <td>
                             <a href="{{ route('ecm_detmob.show', $item) }}" class="btn btn-sm btn-outline-secondary" title="Ver" aria-label="Ver">👁️</a>
