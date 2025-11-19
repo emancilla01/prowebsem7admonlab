@@ -24,9 +24,10 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>RFC</th>
+                    <tr>
+                        <th>#</th>
+                        <th>RFC</th>
+                        <th>Foto</th>
                     @php
                         $nombreDir = request('sort') === 'nombre' && request('dir') === 'asc' ? 'desc' : 'asc';
                     @endphp
@@ -50,6 +51,11 @@
                     <tr>
                         <td>{{ $personal->id }}</td>
                         <td>{{ $personal->rfc }}</td>
+                        <td>
+                            <img src="{{ $personal->photo ? asset('storage/'.$personal->photo) : asset('images/sin-foto.svg') }}"
+                                 alt="Foto {{ $personal->nombre }}"
+                                 class="img-thumb">
+                        </td>
                         <td>{{ $personal->nombre }}</td>
                         <td>{{ $personal->apellido_pat }}</td>
                         <td>{{ $personal->apellido_mat }}</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Personal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PersonalController extends Controller
 {
@@ -50,7 +51,15 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate(Personal::rules());
+        $rules = Personal::rules();
+        $rules['photo'] = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'];
+
+        $data = $request->validate($rules);
+
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('personals', 'public');
+            $data['photo'] = $path;
+        }
 
         Personal::create($data);
 
@@ -79,7 +88,18 @@ class PersonalController extends Controller
      */
     public function update(Request $request, Personal $personal)
     {
-        $data = $request->validate(Personal::rules($personal->id));
+        $rules = Personal::rules($personal->id);
+        $rules['photo'] = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'];
+
+        $data = $request->validate($rules);
+
+        if ($request->hasFile('photo')) {
+            if ($personal->photo && Storage::disk('public')->exists($personal->photo)) {
+                Storage::disk('public')->delete($personal->photo);
+            }
+            $path = $request->file('photo')->store('personals', 'public');
+            $data['photo'] = $path;
+        }
 
         $personal->update($data);
 
@@ -91,6 +111,10 @@ class PersonalController extends Controller
      */
     public function destroy(Personal $personal)
     {
+        if ($personal->photo && Storage::disk('public')->exists($personal->photo)) {
+            Storage::disk('public')->delete($personal->photo);
+        }
+
         $personal->delete();
 
         return redirect()->route('personal.index')->with('success', 'Registro eliminado.');

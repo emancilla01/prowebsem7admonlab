@@ -20,7 +20,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('personal.store') }}" method="POST">
+                    <form action="{{ route('personal.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
@@ -60,6 +60,12 @@
                         <div class="mb-3">
                             <label class="form-label">Departamento</label>
                             <input type="text" name="depto" class="form-control" value="{{ old('depto') }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Foto (opcional)</label>
+                            <input type="file" name="photo" class="form-control" accept="image/*">
+                            @error('photo') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="d-flex justify-content-between">

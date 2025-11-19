@@ -20,7 +20,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('personal.update', $personal) }}" method="POST">
+                    <form action="{{ route('personal.update', $personal) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -61,6 +61,16 @@
                         <div class="mb-3">
                             <label class="form-label">Departamento</label>
                             <input type="text" name="depto" class="form-control" value="{{ old('depto', $personal->depto) }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Foto actual</label>
+                            <div class="mb-2">
+                                <img src="{{ $personal->photo ? asset('storage/'.$personal->photo) : asset('images/sin-foto.svg') }}" alt="Foto actual" class="img-thumb">
+                            </div>
+                            <label class="form-label">Cambiar foto (opcional)</label>
+                            <input type="file" name="photo" class="form-control" accept="image/*">
+                            @error('photo') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="d-flex justify-content-between">

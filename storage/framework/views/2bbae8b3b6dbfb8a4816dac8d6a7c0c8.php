@@ -23,9 +23,10 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>RFC</th>
+                    <tr>
+                        <th>#</th>
+                        <th>RFC</th>
+                        <th>Foto</th>
                     <?php
                         $nombreDir = request('sort') === 'nombre' && request('dir') === 'asc' ? 'desc' : 'asc';
                     ?>
@@ -49,6 +50,11 @@
                     <tr>
                         <td><?php echo e($personal->id); ?></td>
                         <td><?php echo e($personal->rfc); ?></td>
+                        <td>
+                            <img src="<?php echo e($personal->photo ? asset('storage/'.$personal->photo) : asset('images/sin-foto.svg')); ?>"
+                                 alt="Foto <?php echo e($personal->nombre); ?>"
+                                 class="img-thumb">
+                        </td>
                         <td><?php echo e($personal->nombre); ?></td>
                         <td><?php echo e($personal->apellido_pat); ?></td>
                         <td><?php echo e($personal->apellido_mat); ?></td>

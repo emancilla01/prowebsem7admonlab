@@ -22,6 +22,7 @@ class Personal extends Model
         'email',
         'sexo',
         'depto',
+        'photo',
     ];
 
     /**

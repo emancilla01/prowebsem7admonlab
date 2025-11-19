@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app2.ts']); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/photo-thumb.css')); ?>">
 </head>
 <body>
     <div class="row">

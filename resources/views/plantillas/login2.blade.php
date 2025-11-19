@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     @vite(['resources/js/app2.ts'])
+    <link rel="stylesheet" href="{{ asset('css/photo-thumb.css') }}">
 </head>
 <body>
     <div class="row">
