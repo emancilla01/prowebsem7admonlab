@@ -10,6 +10,8 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
+    // Seed Software <-> Materias relations
+    $this->call(\Database\Seeders\SoftwareMateriasSeeder::class);
      */
     public function run(): void
     {
@@ -48,5 +50,7 @@ class DatabaseSeeder extends Seeder
     $this->call(\Database\Seeders\EcmDetequcomSeeder::class);
     // Seed ECM detalle mobiliario
     $this->call(\Database\Seeders\EcmDetmobSeeder::class);
+    // Seed Software <-> Materias relations
+    $this->call(\Database\Seeders\SoftwareMateriasSeeder::class);
     }
 }

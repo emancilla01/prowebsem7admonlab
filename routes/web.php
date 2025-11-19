@@ -81,8 +81,18 @@ Route::resource('espaciosdetrabajo', EspacioTrabajoController::class)
 // Resource routes for Software (CRUD)
 Route::resource('software', SoftwareController::class);
 
+// Nested resource for Software -> Materias (SoftwareMaterias)
+Route::resource('software.materias', App\Http\Controllers\SoftwareMateriaController::class)->shallow();
+
+// Explicit shallow routes for SoftwareMateria (avoid collision with top-level 'materias' resource)
+Route::get('softwarematerias/{software_materia}', [App\Http\Controllers\SoftwareMateriaController::class, 'show'])->name('software.materias.show');
+Route::get('softwarematerias/{software_materia}/edit', [App\Http\Controllers\SoftwareMateriaController::class, 'edit'])->name('software.materias.edit');
+Route::put('softwarematerias/{software_materia}', [App\Http\Controllers\SoftwareMateriaController::class, 'update'])->name('software.materias.update');
+Route::delete('softwarematerias/{software_materia}', [App\Http\Controllers\SoftwareMateriaController::class, 'destroy'])->name('software.materias.destroy');
+
+
 // Resource routes for Materias (CRUD)
-Route::resource('materias', MateriaController::class);
+Route::resource('materias', MateriaController::class)->shallow();
 // Resource routes for Grupos
 Route::resource('grupos', GrupoController::class);
 // Nested resource routes for Grupo alumnos and labs (shallow routing)
@@ -93,3 +103,5 @@ Route::resource('ecm_equcommob', EcmEqucommobController::class)->shallow();
 // Sub-CRUDes for ECM details
 Route::resource('ecm_detequcom', App\Http\Controllers\EcmDetequcomController::class)->shallow();
 Route::resource('ecm_detmob', App\Http\Controllers\EcmDetmobController::class)->shallow();
+
+

@@ -36,4 +36,9 @@ class Software extends Model
             'id_espacio' => ['nullable', 'integer', 'exists:espacios_trabajo,id_espacio'],
         ];
     }
+
+    public function materias()
+    {
+        return $this->belongsToMany(Materia::class, 'software_materias', 'id_software', 'id_materia');
+    }
 }

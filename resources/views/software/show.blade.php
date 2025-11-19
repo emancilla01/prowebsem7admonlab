@@ -34,7 +34,10 @@
 
             <div class="d-flex justify-content-between">
                 <a href="{{ route('software.index') }}" class="btn btn-secondary">Volver</a>
-                <a href="{{ route('software.edit', $software) }}" class="btn btn-primary">Editar</a>
+                <div>
+                    <a href="{{ route('software.materias.index', $software->id_software) }}" class="btn btn-info">Ver materias que requieren este software</a>
+                    <a href="{{ route('software.edit', $software) }}" class="btn btn-primary">Editar</a>
+                </div>
             </div>
         </div>
     </div>

@@ -35,8 +35,15 @@ class Materia extends Model
 
     // public function softwares()
     // {
+    // public function softwares()
+    // {
     //     return $this->belongsToMany(Software::class, 'software_materia', 'materia_id', 'software_id');
     // }
+
+    public function softwares()
+    {
+        return $this->belongsToMany(Software::class, 'software_materias', 'id_materia', 'id_software');
+    }
 
     public static function rules(?int $id = null): array
     {
