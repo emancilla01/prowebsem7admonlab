@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Unidad 3</h1>
+    <h2>Framework VUE</h2>
+    <hr>
+    <h3>Ejercicio 1</h3>
+    <label for="numero">Numero de mensajes</label>
+    <input type="text" id="numero" onchange="vermensaje()">
+    <button onclick="cambiarColorFondo()">Cambiar color de fondo</button>
+    <button onclick="vermensaje()">Ver</button>
+    
+    <div id="contenedor">
+
+    </div>
+</body>
+<script>
+    function vermensaje(){
+        div=document.getElementById("contenedor");
+        div.innerHTML=""; //limpiar div
+        iteracion=document.getElementById("numero").value;
+        div.style.backgroundColor="blue";
+        for (let index =1; index <=iteracion; index++) {
+            div.innerHTML += "<p>Mensaje " + index + "</p>";            
+        }
+
+        //alert window
+        // for (i=0;i<5;i++)[
+        //     alert("Hola Mundo desde VUE")
+        // ]
+        
+    }
+    function cambiarColorFondo(){
+        document.body.style.backgroundColor="red";
+    }
+</script>
+</html>

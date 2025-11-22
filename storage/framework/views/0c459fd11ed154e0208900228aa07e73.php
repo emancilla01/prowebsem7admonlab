@@ -19,7 +19,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <form action="<?php echo e(route('personal.update', $personal)); ?>" method="POST">
+                    <form action="<?php echo e(route('personal.update', $personal)); ?>" method="POST" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('PUT'); ?>
 
@@ -60,6 +60,23 @@
                         <div class="mb-3">
                             <label class="form-label">Departamento</label>
                             <input type="text" name="depto" class="form-control" value="<?php echo e(old('depto', $personal->depto)); ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Foto actual</label>
+                            <div class="mb-2">
+                                <img src="<?php echo e($personal->photo ? asset('storage/'.$personal->photo) : asset('images/sin-foto.svg')); ?>" alt="Foto actual" class="img-thumb">
+                            </div>
+                            <label class="form-label">Cambiar foto (opcional)</label>
+                            <input type="file" name="photo" class="form-control" accept="image/*">
+                            <?php $__errorArgs = ['photo'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> <div class="text-danger"><?php echo e($message); ?></div> <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="d-flex justify-content-between">
