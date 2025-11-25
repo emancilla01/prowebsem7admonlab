@@ -7,7 +7,7 @@
     <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app2.ts']); ?>
 </head>
 <body>
-  hola  <div id="app2">
+  <div id="app2">
 
     </div>
 </body>
