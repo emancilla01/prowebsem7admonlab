@@ -56,6 +56,10 @@ Route::get('/logout',function(){
     return redirect('/');
 });
 
+Route::get('app2', function () {
+    return view('unidad3vesp/app2');
+})->name('app2');
+
 
 
 require __DIR__.'/settings.php';
