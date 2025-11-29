@@ -93,6 +93,8 @@ Route::delete('softwarematerias/{software_materia}', [App\Http\Controllers\Softw
 
 // Resource routes for Materias (CRUD)
 Route::resource('materias', MateriaController::class)->shallow();
+// Resource routes for Entradas (CRUD)
+Route::resource('entradas', App\Http\Controllers\EntradaController::class);
 // Resource routes for Grupos
 Route::resource('grupos', GrupoController::class);
 // Nested resource routes for Grupo alumnos and labs (shallow routing)

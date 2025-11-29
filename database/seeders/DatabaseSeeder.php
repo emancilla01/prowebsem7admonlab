@@ -52,5 +52,7 @@ class DatabaseSeeder extends Seeder
     $this->call(\Database\Seeders\EcmDetmobSeeder::class);
     // Seed Software <-> Materias relations
     $this->call(\Database\Seeders\SoftwareMateriasSeeder::class);
+    // Seed Entradas
+    $this->call(\Database\Seeders\EntradasSeeder::class);
     }
 }

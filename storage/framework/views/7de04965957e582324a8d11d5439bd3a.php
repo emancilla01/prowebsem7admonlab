@@ -1,7 +1,7 @@
 <nav
     class="navbar navbar-expand-sm navbar-dark bg-primary"
    >
-    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo e(url('/')); ?>">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo e(url('/dashboard')); ?>">
         <img src="<?php echo e(asset('logo.png')); ?>" alt="Logo" style="height:56px;" />        
     </a>
     
@@ -45,6 +45,11 @@
             <li class="nav-item">
                 <a class="nav-link active" href="<?php echo e(url('/software')); ?>" aria-current="page"
                     >Software <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="<?php echo e(url('/entradas')); ?>" aria-current="page"
+                    >Entradas <span class="visually-hidden">(current)</span></a
                 >
             </li>
             <li class="nav-item">
