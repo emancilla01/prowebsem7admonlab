@@ -9,6 +9,6 @@
 <body>
   <div id="app2">
 
-    </div>
+  </div>
 </body>
 </html>

@@ -9,6 +9,6 @@
 <body>
   <div id="app2">
 
-    </div>
+  </div>
 </body>
 </html><?php /**PATH C:\Users\Usuario\Herd\admonlab\resources\views/unidad3vesp/app2.blade.php ENDPATH**/ ?>
