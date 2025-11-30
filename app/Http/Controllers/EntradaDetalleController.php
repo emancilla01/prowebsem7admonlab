@@ -77,7 +77,7 @@ class EntradaDetalleController extends Controller
             $base->orderBy('entradasdetalle.' . $sort, $dir);
         }
 
-        $detalles = $base->paginate(10)->withQueryString();
+        $detalles = $base->paginate(5)->withQueryString();
 
         return view('entradasdet.index', compact('entrada', 'detalles', 'sort', 'dir'));
     }

@@ -53,6 +53,11 @@
                 >
             </li>
             <li class="nav-item">
+                <a class="nav-link active" href="{{ route('salidas.index') }}" aria-current="page"
+                    >Salidas <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="{{ route('ecm_equcommob.index') }}" aria-current="page"
                     >ECM - Inventario <span class="visually-hidden">(current)</span></a
                 >

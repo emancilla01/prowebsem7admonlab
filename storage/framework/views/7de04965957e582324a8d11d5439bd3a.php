@@ -53,6 +53,11 @@
                 >
             </li>
             <li class="nav-item">
+                <a class="nav-link active" href="<?php echo e(route('salidas.index')); ?>" aria-current="page"
+                    >Salidas <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="<?php echo e(route('ecm_equcommob.index')); ?>" aria-current="page"
                     >ECM - Inventario <span class="visually-hidden">(current)</span></a
                 >
