@@ -24,7 +24,10 @@
         </dl>
 
         <div class="d-flex justify-content-between">
-            <a href="<?php echo e(route('salidas.index')); ?>" class="btn btn-secondary">Volver</a>
+            <div>
+                <a href="<?php echo e(route('salidas.index')); ?>" class="btn btn-secondary">Volver</a>
+                <a href="<?php echo e(route('salidas.detalle.index', $salida)); ?>" class="btn btn-info">Ver detalles</a>
+            </div>
             <a href="<?php echo e(route('salidas.edit', $salida)); ?>" class="btn btn-primary">Editar</a>
         </div>
     </div>

@@ -60,5 +60,7 @@ class DatabaseSeeder extends Seeder
     $this->call(\Database\Seeders\EntradasSeeder::class);
         // Seed Entradas Detalle
         $this->call(\Database\Seeders\EntradasDetalleSeeder::class);
+    // Seed Salidas detalle (sample)
+    $this->call(\Database\Seeders\SalidasDetalleSeeder::class);
     }
 }

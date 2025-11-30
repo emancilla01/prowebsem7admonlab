@@ -99,6 +99,8 @@ Route::resource('entradas', App\Http\Controllers\EntradaController::class);
 Route::resource('entradas.detalle', App\Http\Controllers\EntradaDetalleController::class);
 // Resource routes for Salidas (CRUD)
 Route::resource('salidas', App\Http\Controllers\SalidasController::class);
+// Nested resource for Salidas -> SalidasDetalle (fully nested)
+Route::resource('salidas.detalle', App\Http\Controllers\SalidaDetalleController::class);
 // Resource routes for Grupos
 Route::resource('grupos', GrupoController::class);
 // Nested resource routes for Grupo alumnos and labs (shallow routing)

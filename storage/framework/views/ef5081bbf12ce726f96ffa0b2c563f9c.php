@@ -47,6 +47,7 @@
                     <td><?php echo e($salida->quien_registro); ?></td>
                     <td>
                         <a href="<?php echo e(route('salidas.show', $salida)); ?>" class="btn btn-sm btn-outline-secondary" title="Ver">👁️</a>
+                        <a href="<?php echo e(route('salidas.detalle.index', $salida)); ?>" class="btn btn-sm btn-outline-info" title="Ver detalles">📄</a>
                         <a href="<?php echo e(route('salidas.edit', $salida)); ?>" class="btn btn-sm btn-outline-primary" title="Editar">✏️</a>
                         <form action="<?php echo e(route('salidas.destroy', $salida)); ?>" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar esta salida?');">
                             <?php echo csrf_field(); ?>

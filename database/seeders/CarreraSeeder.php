@@ -12,6 +12,12 @@ class CarreraSeeder extends Seeder
      */
     public function run(): void
     {
-        Carrera::factory()->count(10)->create();
+        // Use make() + firstOrCreate to avoid unique-constraint failures when reseeding
+        for ($i = 0; $i < 10; $i++) {
+            $data = Carrera::factory()->make()->toArray();
+            Carrera::firstOrCreate([
+                'clave_carrera' => $data['clave_carrera'],
+            ], $data);
+        }
     }
 }

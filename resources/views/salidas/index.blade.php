@@ -48,6 +48,7 @@
                     <td>{{ $salida->quien_registro }}</td>
                     <td>
                         <a href="{{ route('salidas.show', $salida) }}" class="btn btn-sm btn-outline-secondary" title="Ver">👁️</a>
+                        <a href="{{ route('salidas.detalle.index', $salida) }}" class="btn btn-sm btn-outline-info" title="Ver detalles">📄</a>
                         <a href="{{ route('salidas.edit', $salida) }}" class="btn btn-sm btn-outline-primary" title="Editar">✏️</a>
                         <form action="{{ route('salidas.destroy', $salida) }}" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar esta salida?');">
                             @csrf
