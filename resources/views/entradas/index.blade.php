@@ -55,6 +55,7 @@
                     <td>{{ $entrada->quien_recibio }}</td>
                     <td>
                         <a href="{{ route('entradas.show', $entrada) }}" class="btn btn-sm btn-outline-secondary" title="Ver" aria-label="Ver registro">👁️</a>
+                        <a href="{{ route('entradas.detalle.index', $entrada) }}" class="btn btn-sm btn-outline-info" title="Detalles" aria-label="Ver detalles">📋</a>
                         <a href="{{ route('entradas.edit', $entrada) }}" class="btn btn-sm btn-outline-primary" title="Editar" aria-label="Editar registro">✏️</a>
                         <form action="{{ route('entradas.destroy', $entrada) }}" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar este registro?');">
                             @csrf

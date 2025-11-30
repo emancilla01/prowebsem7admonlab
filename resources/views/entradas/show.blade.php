@@ -36,7 +36,10 @@
             </dl>
 
             <div class="d-flex justify-content-between">
-                <a href="{{ route('entradas.index') }}" class="btn btn-secondary">Volver</a>
+                <div>
+                    <a href="{{ route('entradas.index') }}" class="btn btn-secondary">Volver</a>
+                    <a href="{{ route('entradas.detalle.index', $entrada) }}" class="btn btn-outline-info">Ver detalles</a>
+                </div>
                 <a href="{{ route('entradas.edit', $entrada) }}" class="btn btn-primary">Editar</a>
             </div>
         </div>
@@ -44,4 +47,3 @@
 </div>
 
 @endsection
-

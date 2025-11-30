@@ -35,7 +35,10 @@
             </dl>
 
             <div class="d-flex justify-content-between">
-                <a href="<?php echo e(route('entradas.index')); ?>" class="btn btn-secondary">Volver</a>
+                <div>
+                    <a href="<?php echo e(route('entradas.index')); ?>" class="btn btn-secondary">Volver</a>
+                    <a href="<?php echo e(route('entradas.detalle.index', $entrada)); ?>" class="btn btn-outline-info">Ver detalles</a>
+                </div>
                 <a href="<?php echo e(route('entradas.edit', $entrada)); ?>" class="btn btn-primary">Editar</a>
             </div>
         </div>
@@ -43,6 +46,4 @@
 </div>
 
 <?php $__env->stopSection(); ?>
-
-
 <?php echo $__env->make('plantillas.login2', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Usuario\Herd\admonlab\resources\views/entradas/show.blade.php ENDPATH**/ ?>

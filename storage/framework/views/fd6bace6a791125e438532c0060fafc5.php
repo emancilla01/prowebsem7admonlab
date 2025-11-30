@@ -54,6 +54,7 @@
                     <td><?php echo e($entrada->quien_recibio); ?></td>
                     <td>
                         <a href="<?php echo e(route('entradas.show', $entrada)); ?>" class="btn btn-sm btn-outline-secondary" title="Ver" aria-label="Ver registro">👁️</a>
+                        <a href="<?php echo e(route('entradas.detalle.index', $entrada)); ?>" class="btn btn-sm btn-outline-info" title="Detalles" aria-label="Ver detalles">📋</a>
                         <a href="<?php echo e(route('entradas.edit', $entrada)); ?>" class="btn btn-sm btn-outline-primary" title="Editar" aria-label="Editar registro">✏️</a>
                         <form action="<?php echo e(route('entradas.destroy', $entrada)); ?>" method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar este registro?');">
                             <?php echo csrf_field(); ?>

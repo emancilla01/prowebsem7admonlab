@@ -30,4 +30,9 @@ class Entrada extends Model
     protected $casts = [
         'fecha' => 'date',
     ];
+
+    public function detalles()
+    {
+        return $this->hasMany(EntradaDetalle::class, 'id_entrada');
+    }
 }
