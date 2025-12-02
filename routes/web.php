@@ -15,6 +15,7 @@ use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\GrupoAlumnoController;
 use App\Http\Controllers\GrupoLabController;
 use App\Http\Controllers\EcmEqucommobController;
+use App\Http\Controllers\ConsultasController;
 
 //original
 // Route::get('/', function () {
@@ -99,6 +100,10 @@ Route::resource('entradas', App\Http\Controllers\EntradaController::class);
 Route::resource('entradas.detalle', App\Http\Controllers\EntradaDetalleController::class);
 // Resource routes for Salidas (CRUD)
 Route::resource('salidas', App\Http\Controllers\SalidasController::class);
+// Consultas: por categoría
+Route::get('/consultas/categorias', [ConsultasController::class, 'porCategorias'])->name('consultas.categorias');
+// Consultas: por personal
+Route::get('/consultas/personal', [ConsultasController::class, 'porPersonal'])->name('consultas.personal');
 // Nested resource for Salidas -> SalidasDetalle (fully nested)
 Route::resource('salidas.detalle', App\Http\Controllers\SalidaDetalleController::class);
 // Resource routes for Grupos

@@ -62,6 +62,15 @@
                     >ECM - Inventario <span class="visually-hidden">(current)</span></a
                 >
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="consultasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Consultas al inventario
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="consultasDropdown">
+                    <li><a class="dropdown-item" href="{{ route('consultas.categorias') }}">Por Categoría</a></li>
+                    <li><a class="dropdown-item" href="{{ route('consultas.personal') }}">Por Personal</a></li>
+                </ul>
+            </li>
             <li class="nav-item">
                 <a class="nav-link active" href="logout" aria-current="page"
                     >Logout <span class="visually-hidden">(current)</span></a
