@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <!-- <ul>
         <li><button @click="vereje1">Ejercicio 1</button></li>
         <li><button @click="vereje2">Ejercicio 2</button></li>
         <li><button @click="vereje3">Ejercicio 3</button></li>
@@ -26,17 +26,18 @@
 
         </componentey>
         </div>
-    </ul>
-<componente1 v-if="eje1" ></componente1>
+    </ul> -->
+<!-- <componente1 v-if="eje1" ></componente1>
 <componente2 v-if="eje2" ></componente2>
 <componente3 v-if="eje3" ></componente3>
 <componente4 v-if="eje4" ></componente4>
 <componente5 v-if="eje5" ></componente5>
 <componente6 v-if="eje6" ></componente6>
-<componente7 v-if="eje7" ></componente7>
+<componente7 v-if="eje7" ></componente7> -->
 <!--  prueba de dato reactivo (true or false) -->
-{{ eje1 }} 
-
+<!-- {{ eje1 }}  -->
+<hr><hr>
+<compfetch1></compfetch1>
 
     <!-- <div>
         <h1>Hola desde App2.vue</h1>
@@ -107,6 +108,7 @@
     import componente7 from './componente7.vue';
     import componentex from './componentex.vue';
     import componentey from './componentey.vue';
+    import compfetch1 from './fetch/compfetch1.vue';
     import {ref} from 'vue';
     const eje1 = ref(false);
     const eje2 = ref(false);
