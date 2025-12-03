@@ -271,4 +271,45 @@ class ConsultasController extends Controller
         // Pass only $registros as requested
         return view('consultas.software_equipo', ['registros' => $query]);
     }
+
+    /**
+     * List each installed software and the computer where it is found.
+     *
+     * Produces a collection `$registros` with the exact columns:
+     * - software: nombre_software (from `software`)
+     * - equipo: descripcion (from `ecm_detequcom`)
+     * - no_serie: no_serie (from `entradasdetalle`)
+     * - lugar: nombre_espacio (from `espacios_trabajo`)
+     *
+     * Note: Uses only existing tables and relations (no migrations added).
+     */
+    public function porSoftwareInstalado(Request $request)
+    {
+        $filtro = $request->input('filtro_software');
+
+        $registros = DB::table('software')
+            ->join('espacios_trabajo', 'software.id_espacio', '=', 'espacios_trabajo.id_espacio')
+            ->join('entradasdetalle', 'entradasdetalle.id_espaciotrabajo', '=', 'espacios_trabajo.id_espacio')
+            ->join('ecm_detequcom', 'entradasdetalle.id_ecm_dete', '=', 'ecm_detequcom.id')
+            ->whereNotNull('entradasdetalle.id_ecm_dete')
+            ->select(
+                'software.nombre_software as software',
+                'ecm_detequcom.descripcion as equipo',
+                'entradasdetalle.no_serie as no_serie',
+                'espacios_trabajo.nombre_espacio as lugar'
+            )
+            ->when($filtro, function ($q, $filtro) {
+                $q->where('software.nombre_software', 'like', "%{$filtro}%")
+                  ->orWhere('ecm_detequcom.descripcion', 'like', "%{$filtro}%")
+                  ->orWhere('entradasdetalle.no_serie', 'like', "%{$filtro}%")
+                  ->orWhere('espacios_trabajo.nombre_espacio', 'like', "%{$filtro}%");
+            })
+            ->distinct()
+            ->orderBy('software.nombre_software')
+            // paginate results to match other consultas (simple pagination)
+            ->simplePaginate(6)
+            ->withQueryString();
+
+        return view('consultas.software_instalado', ['registros' => $registros]);
+    }
 }

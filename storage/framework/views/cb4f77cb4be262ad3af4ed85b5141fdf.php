@@ -1,5 +1,3 @@
-
-
 <?php echo $__env->make('menu2', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <?php $__env->startSection('contenido2'); ?>
