@@ -60,6 +60,9 @@ Route::get('app2', function () {
     return view('unidad3vesp/app2');
 })->name('app2');
 
+Route::get('appvue', function () {
+    return view('unidad3vesp/appvue');
+})->name('appvue');
 
 
 require __DIR__.'/settings.php';
