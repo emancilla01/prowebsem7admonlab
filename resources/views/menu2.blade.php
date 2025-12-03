@@ -69,6 +69,7 @@
                 <ul class="dropdown-menu" aria-labelledby="consultasDropdown">
                     <li><a class="dropdown-item" href="{{ route('consultas.categorias') }}">Por Categoría</a></li>
                     <li><a class="dropdown-item" href="{{ route('consultas.personal') }}">Por Personal</a></li>
+                    <li><a class="dropdown-item" href="{{ route('consultas.espacios') }}">Por Espacios de Trabajo</a></li>
                 </ul>
             </li>
             <li class="nav-item">

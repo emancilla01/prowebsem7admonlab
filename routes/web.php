@@ -104,6 +104,8 @@ Route::resource('salidas', App\Http\Controllers\SalidasController::class);
 Route::get('/consultas/categorias', [ConsultasController::class, 'porCategorias'])->name('consultas.categorias');
 // Consultas: por personal
 Route::get('/consultas/personal', [ConsultasController::class, 'porPersonal'])->name('consultas.personal');
+// Consultas: por espacios de trabajo
+Route::get('/consultas/espacios', [ConsultasController::class, 'porEspacios'])->name('consultas.espacios');
 // Nested resource for Salidas -> SalidasDetalle (fully nested)
 Route::resource('salidas.detalle', App\Http\Controllers\SalidaDetalleController::class);
 // Resource routes for Grupos
