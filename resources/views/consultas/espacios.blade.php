@@ -27,4 +27,8 @@
         </table>
 
     </div>
+    <div>
+        {{ $espaciosResumen->links('pagination::bootstrap-5') }}
+    </div>
+
 @endsection

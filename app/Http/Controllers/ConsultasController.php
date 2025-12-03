@@ -8,6 +8,8 @@ use App\Models\EntradaDetalle;
 use App\Models\Personal;
 use App\Models\EspacioTrabajo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ConsultasController extends Controller
 {
@@ -67,7 +69,17 @@ class ConsultasController extends Controller
             ];
         })->values();
 
-        return view('consultas.categorias', ['results' => $results]);
+        // Paginate the results using simple pagination (Prev/Next)
+        $perPage = 6;
+        $page = Paginator::resolveCurrentPage() ?: 1;
+        $slice = $results->slice(($page - 1) * $perPage, $perPage)->values();
+
+        $paginated = new LengthAwarePaginator($slice, $results->count(), $perPage, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'query' => $request->query(),
+        ]);
+
+        return view('consultas.categorias', ['results' => $paginated]);
     }
 
     /**
@@ -141,7 +153,17 @@ class ConsultasController extends Controller
             ];
         })->values();
 
-        return view('consultas.personal', ['personalResumen' => $personalResumen]);
+        // Paginate the personal resumen collection using simple pagination (Prev/Next)
+        $perPage = 6;
+        $page = Paginator::resolveCurrentPage() ?: 1;
+        $slice = $personalResumen->slice(($page - 1) * $perPage, $perPage)->values();
+
+        $paginatedPersonal = new LengthAwarePaginator($slice, $personalResumen->count(), $perPage, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'query' => $request->query(),
+        ]);
+
+        return view('consultas.personal', ['personalResumen' => $paginatedPersonal]);
     }
 
     /**
@@ -197,6 +219,56 @@ class ConsultasController extends Controller
             ];
         })->values();
 
-        return view('consultas.espacios', ['espaciosResumen' => $espaciosResumen]);
+        // Paginate espacios resumen using simple pagination (Prev/Next)
+        $perPage = 6;
+        $page = Paginator::resolveCurrentPage() ?: 1;
+        $slice = $espaciosResumen->slice(($page - 1) * $perPage, $perPage)->values();
+
+        $paginatedEspacios = new LengthAwarePaginator($slice, $espaciosResumen->count(), $perPage, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'query' => $request->query(),
+        ]);
+
+        return view('consultas.espacios', ['espaciosResumen' => $paginatedEspacios]);
+    }
+
+    /**
+     * Show software installed per Equipo de Computo.
+     *
+     * Rules:
+     * - Accept optional GET `filtro_equipo` to filter by equipment description or serial.
+     * - Do not change DB schema. Hardware fields set to "N/A" since not available.
+     * - Return view with `$registros` (each record has keys matching view columns).
+     */
+    public function softwarePorEquipo(Request $request)
+    {
+        $filtro = $request->input('filtro_equipo');
+
+        $query = DB::table('entradasdetalle')
+            ->join('ecm_detequcom', 'entradasdetalle.id_ecm_dete', '=', 'ecm_detequcom.id')
+            ->leftJoin('software', 'software.id_espacio', '=', 'entradasdetalle.id_espaciotrabajo')
+            ->whereNotNull('entradasdetalle.id_ecm_dete')
+            ->select(
+                'ecm_detequcom.descripcion as equipo',
+                'entradasdetalle.no_serie as no_serie',
+                DB::raw("'N/A' as procesador"),
+                DB::raw("'N/A' as memoria_ram"),
+                DB::raw("'N/A' as almacenamiento_hd"),
+                DB::raw("'N/A' as resolucion_pantalla"),
+                DB::raw("'N/A' as pantalla_tactil"),
+                DB::raw("GROUP_CONCAT(DISTINCT software.nombre_software SEPARATOR ', ') as software_instalado")
+            )
+            ->when($filtro, function ($q, $filtro) {
+                $q->where('ecm_detequcom.descripcion', 'like', "%{$filtro}%")
+                  ->orWhere('entradasdetalle.no_serie', 'like', "%{$filtro}%");
+            })
+            ->groupBy('entradasdetalle.id', 'ecm_detequcom.descripcion', 'entradasdetalle.no_serie')
+            ->orderBy('ecm_detequcom.descripcion')
+            // use simplePaginate to avoid a heavy COUNT(*) with GROUP BY; adjust per-page as needed
+            ->simplePaginate(6)
+            ->withQueryString();
+
+        // Pass only $registros as requested
+        return view('consultas.software_equipo', ['registros' => $query]);
     }
 }

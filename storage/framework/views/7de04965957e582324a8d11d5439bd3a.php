@@ -70,6 +70,7 @@
                     <li><a class="dropdown-item" href="<?php echo e(route('consultas.categorias')); ?>">Por Categoría</a></li>
                     <li><a class="dropdown-item" href="<?php echo e(route('consultas.personal')); ?>">Por Personal</a></li>
                     <li><a class="dropdown-item" href="<?php echo e(route('consultas.espacios')); ?>">Por Espacios de Trabajo</a></li>
+                    <li><a class="dropdown-item" href="<?php echo e(route('consultas.software_equipo')); ?>">Software por Equipo</a></li>
                 </ul>
             </li>
             <li class="nav-item">

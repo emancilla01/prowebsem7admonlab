@@ -32,6 +32,11 @@
     </table>
 </div>
 
+<div>
+    <?php echo e($personalResumen->links('pagination::bootstrap-5')); ?>
+
+</div>
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('plantillas.login2', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Usuario\Herd\admonlab\resources\views/consultas/personal.blade.php ENDPATH**/ ?>

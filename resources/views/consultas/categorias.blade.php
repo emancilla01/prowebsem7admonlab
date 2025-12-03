@@ -33,4 +33,9 @@
     </table>
 </div>
 
+<div >
+    {{-- {{ $results->links() }} --}}
+    {{ $results->links('pagination::bootstrap-5') }}
+</div>
+
 @endsection

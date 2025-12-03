@@ -33,4 +33,8 @@
     </table>
 </div>
 
+<div>
+    {{ $personalResumen->links('pagination::bootstrap-5') }}
+</div>
+
 @endsection
