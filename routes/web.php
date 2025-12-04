@@ -64,6 +64,10 @@ Route::get('appvue', function () {
     return view('unidad3vesp/appvue');
 })->name('appvue');
 
+Route::get('directivasvue', function () {
+    return view('unidad3vesp/directivasvue');
+})->name('directivasvue');
+
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
