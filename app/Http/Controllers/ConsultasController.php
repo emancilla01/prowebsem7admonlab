@@ -312,4 +312,104 @@ class ConsultasController extends Controller
 
         return view('consultas.software_instalado', ['registros' => $registros]);
     }
+
+    /**
+     * Por Grupos que solicitaron el Software.
+     *
+     * Returns a collection (paginated) with columns:
+     * - periodo
+     * - materia
+     * - maestro
+     * - software
+     * - no_serie
+     *
+     * Uses existing tables only: grupos, periodos, materias, personals, software_materias, software,
+     * grupos_labs and entradasdetalle to obtain the equipment serial number.
+     */
+    public function porGrupos(Request $request)
+    {
+        $filtro = $request->input('filtro_grupos');
+
+        $query = DB::table('grupos')
+            ->join('periodos', 'grupos.id_periodo', '=', 'periodos.id')
+            ->join('materias', 'grupos.id_materia', '=', 'materias.id')
+            ->join('personals', 'grupos.id_personal', '=', 'personals.id')
+            ->join('software_materias', 'software_materias.id_materia', '=', 'materias.id')
+            ->join('software', 'software.id_software', '=', 'software_materias.id_software')
+            ->leftJoin('grupos_labs', 'grupos_labs.id_grupo', '=', 'grupos.id')
+            ->leftJoin('entradasdetalle', 'entradasdetalle.id_espaciotrabajo', '=', 'grupos_labs.id_espacio')
+            ->whereNotNull('software.id_software')
+            ->select(
+                'periodos.nombre as periodo',
+                'materias.nombre as materia',
+                DB::raw("CONCAT(personals.nombre, ' ', personals.apellido_pat, ' ', personals.apellido_mat) as maestro"),
+                'software.nombre_software as software',
+                'entradasdetalle.no_serie as no_serie'
+            )
+            ->when($filtro, function ($q, $filtro) {
+                $q->where('periodos.nombre', 'like', "%{$filtro}%")
+                  ->orWhere('materias.nombre', 'like', "%{$filtro}%")
+                  ->orWhere('personals.nombre', 'like', "%{$filtro}%")
+                  ->orWhere('software.nombre_software', 'like', "%{$filtro}%")
+                  ->orWhere('entradasdetalle.no_serie', 'like', "%{$filtro}%");
+            })
+            ->distinct()
+            ->orderBy('periodos.nombre')
+            ->simplePaginate(6)
+            ->withQueryString();
+
+        return view('consultas.grupos_software', ['registros' => $query]);
+    }
+
+    /**
+     * Por Carreras que solicitaron el Software.
+     *
+     * Returns a collection (paginated) with columns:
+     * - periodo
+     * - carrera
+     * - materia
+     * - maestro
+     * - software
+     * - no_serie
+     *
+     * Uses existing tables only: grupos, periodos, materias, personals, carreras,
+     * software_materias, software, grupos_labs and entradasdetalle to obtain the equipment serial number.
+     */
+    public function porCarreras(Request $request)
+    {
+        $filtro = $request->input('filtro_carreras');
+
+        $query = DB::table('grupos')
+            ->join('periodos', 'grupos.id_periodo', '=', 'periodos.id')
+            ->join('materias', 'grupos.id_materia', '=', 'materias.id')
+            ->join('personals', 'grupos.id_personal', '=', 'personals.id')
+            ->join('carreras', 'grupos.id_carrera', '=', 'carreras.id_carrera')
+            ->join('software_materias', 'software_materias.id_materia', '=', 'materias.id')
+            ->join('software', 'software.id_software', '=', 'software_materias.id_software')
+            ->leftJoin('grupos_labs', 'grupos_labs.id_grupo', '=', 'grupos.id')
+            ->leftJoin('entradasdetalle', 'entradasdetalle.id_espaciotrabajo', '=', 'grupos_labs.id_espacio')
+            ->whereNotNull('software.id_software')
+            ->select(
+                'periodos.nombre as periodo',
+                'carreras.nombre_carrera as carrera',
+                'materias.nombre as materia',
+                DB::raw("CONCAT(personals.nombre, ' ', personals.apellido_pat, ' ', personals.apellido_mat) as maestro"),
+                'software.nombre_software as software',
+                'entradasdetalle.no_serie as no_serie'
+            )
+            ->when($filtro, function ($q, $filtro) {
+                $q->where('periodos.nombre', 'like', "%{$filtro}%")
+                  ->orWhere('carreras.nombre_carrera', 'like', "%{$filtro}%")
+                  ->orWhere('materias.nombre', 'like', "%{$filtro}%")
+                  ->orWhere('personals.nombre', 'like', "%{$filtro}%")
+                  ->orWhere('software.nombre_software', 'like', "%{$filtro}%")
+                  ->orWhere('entradasdetalle.no_serie', 'like', "%{$filtro}%");
+            })
+            ->distinct()
+            ->orderBy('periodos.nombre')
+            ->simplePaginate(6)
+            ->withQueryString();
+
+        return view('consultas.carreras_software', ['registros' => $query]);
+    }
 }

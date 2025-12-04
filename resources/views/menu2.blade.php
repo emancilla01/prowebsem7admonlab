@@ -72,6 +72,8 @@
                     <li><a class="dropdown-item" href="{{ route('consultas.espacios') }}">Por Espacios de Trabajo</a></li>
                     <li><a class="dropdown-item" href="{{ route('consultas.software_equipo') }}">Software por Equipo</a></li>
                     <li><a class="dropdown-item" href="{{ route('consultas.software_instalado') }}">Por Software instalado</a></li>
+                    <li><a class="dropdown-item" href="{{ route('consultas.grupos_software') }}">Por Grupos que solicitaron el Software</a></li>
+                    <li><a class="dropdown-item" href="{{ route('consultas.carreras_software') }}">Por Carreras que solicitaron el Software</a></li>
                 </ul>
             </li>
             <li class="nav-item">
