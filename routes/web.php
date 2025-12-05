@@ -64,6 +64,9 @@ Route::get('appvue', function () {
     return view('unidad3vesp/appvue');
 })->name('appvue');
 
+route::get('/apipersonal', [PersonalController::class,'apipersonal'])->name('apipersonal');
+
+
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

@@ -119,4 +119,14 @@ class PersonalController extends Controller
 
         return redirect()->route('personal.index')->with('success', 'Registro eliminado.');
     }
+    
+    public function apipersonal()
+    {
+        $personal = Personal::all();
+        if ($personal) {
+            return response()->json($personal);
+        } else {
+            return response()->json(['error' => 'Personal not found'], 404);
+        }
+    }
 }
