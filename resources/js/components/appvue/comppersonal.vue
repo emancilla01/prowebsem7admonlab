@@ -1,5 +1,9 @@
 <template>
-<table>
+<div>
+    <div style="margin-bottom:8px">
+        <label>Filtrar por nombre: <input type="text" v-model="letras" @input="onInput" placeholder="Escribe letras..." /></label>
+    </div>
+    <table>
     <tr>
         <th>ID</th>
         <th>RFC</th>
@@ -12,22 +16,41 @@
         <td> {{ personal.nombre }}</td>
         <td> {{ personal.email }}</td>
     </tr>
-</table>
+    </table>
+    </div>
 </template>
 
 <script setup>
-import personal from "@/routes/personal";
+// import personal from "@/routes/personal";
+
 import {ref, onMounted} from "vue";
 const personales = ref([]);
+const letras = ref('');
 
-
-const Obtener = () => {
-    fetch('http://admonlab.test/apipersonal')
-    .then(response => {return response.json();})
-    .then(data => {personales.value = data;})
+const obtener = (q) => {
+    const url = `/apipersonal?letras=${encodeURIComponent(q ?? '')}`;
+    console.log('fetching', url);
+    fetch(url)
+    .then(response => response.json())
+    .then(data => { personales.value = data; })
+    .catch(err => { console.error('fetch error', err); personales.value = []; });
 };
-    
+
+const onInput = () => {
+    obtener(letras.value);
+};
+
 onMounted(() => {
-    Obtener();
+    obtener('');
 });
+
+// const Obtener = () => {
+//     fetch('http://admonlab.test/apipersonal')
+//     .then(response => {return response.json();})
+//     .then(data => {personales.value = data;})
+// };
+    
+// onMounted(() => {
+//     Obtener();
+// });
 </script>

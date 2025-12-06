@@ -13,7 +13,6 @@
     </ul>
 </nav>
 <main>
-     *** For filtered query checkout to inclass3 ***
     <section>
         <compusuarios v-if="mostrar == 1" />
         <compposts v-if="mostrar == 2" />

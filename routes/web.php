@@ -64,7 +64,7 @@ Route::get('appvue', function () {
     return view('unidad3vesp/appvue');
 })->name('appvue');
 
-route::get('/apipersonal', [PersonalController::class,'apipersonal'])->name('apipersonal');
+route::get('/apipersonal/{letras?}', [PersonalController::class,'apipersonal'])->name('apipersonal');
 
 
 

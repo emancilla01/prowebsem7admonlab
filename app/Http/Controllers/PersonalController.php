@@ -120,13 +120,25 @@ class PersonalController extends Controller
         return redirect()->route('personal.index')->with('success', 'Registro eliminado.');
     }
     
-    public function apipersonal()
+    // public function apipersonal()
+    // {
+    //     $personal = Personal::all();
+    //     if ($personal) {
+    //         return response()->json($personal);
+    //     } else {
+    //         return response()->json(['error' => 'Personal not found'], 404);
+    //     }
+    // }
+
+    // API endpoint for JS clients. Accepts optional query param `letras`.
+    public function apipersonal(Request $request)
     {
-        $personal = Personal::all();
-        if ($personal) {
-            return response()->json($personal);
-        } else {
-            return response()->json(['error' => 'Personal not found'], 404);
-        }
+        $letras = $request->query('letras', '');
+        $pattern = $letras === '' ? '%' : "%{$letras}%";
+
+        $personal = Personal::where('nombre', 'like', $pattern)->get();
+
+        return response()->json($personal);
     }
+    
 }
