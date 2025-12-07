@@ -90,4 +90,12 @@ class CategoriaController extends Controller
 
         return redirect()->route('categorias.index')->with('success', 'Categoría eliminada.');
     }
+
+    /**
+     * Return JSON list of categorias for API/JS
+     */
+    public function apicategorias()
+    {
+        return response()->json(Categoria::all());
+    }
 }

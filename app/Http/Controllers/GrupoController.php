@@ -80,4 +80,12 @@ class GrupoController extends Controller
 
         return redirect()->route('grupos.index')->with('success', 'Grupo eliminado.');
     }
+
+    /**
+     * Return JSON list of grupos for API/JS
+     */
+    public function apigrupos()
+    {
+        return response()->json(Grupo::with('materia')->get());
+    }
 }

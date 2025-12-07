@@ -64,11 +64,24 @@ Route::get('app2', function () {
 Route::get('appvue', function () {
     return view('unidad3vesp/appvue');
 })->name('appvue');
+
+// Practica7 - Consultas sin Inertia (Blade + Vite mount)
+Route::get('consultas-vue', function () {
+    return view('unidad3vesp/consultas-vue');
+})->name('consultas.vue');
+
+
+
 Route::get('directivasvue', function () {
     return view('unidad3vesp/directivasvue');
 })->name('directivasvue');
 
 Route::get('/apipersonal/{letras?}', [PersonalController::class, 'apipersonal'])->name('apipersonal');
+
+// API-like routes (return JSON) for practica7 frontend
+Route::get('/apigrupos', [GrupoController::class, 'apigrupos'])->name('apigrupos');
+Route::get('/apicategorias', [CategoriaController::class, 'apicategorias'])->name('apicategorias');
+Route::get('/apiperiodos', [PeriodoController::class, 'apiperiodos'])->name('apiperiodos');
 
 
 require __DIR__.'/settings.php';

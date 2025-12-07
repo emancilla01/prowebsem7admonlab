@@ -77,6 +77,11 @@
                 </ul>
             </li>
             <li class="nav-item">
+                <a class="nav-link active" href="<?php echo e(url('/consultas-vue')); ?>" aria-current="page"
+                    >Consultas con VUE API‑Rest <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="logout" aria-current="page"
                     >Logout <span class="visually-hidden">(current)</span></a
                 >

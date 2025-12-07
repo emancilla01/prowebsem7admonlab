@@ -90,4 +90,12 @@ class PeriodoController extends Controller
 
         return redirect()->route('periodos.index')->with('success', 'Periodo eliminado.');
     }
+
+    /**
+     * Return JSON list of periodos for API/JS
+     */
+    public function apiperiodos()
+    {
+        return response()->json(Periodo::all());
+    }
 }
