@@ -64,10 +64,11 @@ Route::get('app2', function () {
 Route::get('appvue', function () {
     return view('unidad3vesp/appvue');
 })->name('appvue');
-
 Route::get('directivasvue', function () {
     return view('unidad3vesp/directivasvue');
 })->name('directivasvue');
+
+Route::get('/apipersonal/{letras?}', [PersonalController::class, 'apipersonal'])->name('apipersonal');
 
 
 require __DIR__.'/settings.php';

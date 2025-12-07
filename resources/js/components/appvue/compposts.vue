@@ -22,16 +22,15 @@
 
 <script setup>
 import {ref, onMounted} from "vue";
-const usuarios = ref([]);
+const posts = ref([]);
 
-const ObtenerUsuarios = () => {
-    fetch('https://jsonplaceholder.typicode.com/users/')
-    .then(response => {return response.json()})
-    .then(data => {usuarios.value = data;})
-
+const ObtenerPost = () => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => {return response.json();})
+    .then(data => {posts.value = data;})
 };
     
 onMounted(() => {
-    ObtenerUsuarios();
+    ObtenerPost();
 });
 </script>
