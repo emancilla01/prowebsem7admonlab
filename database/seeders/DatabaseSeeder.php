@@ -17,10 +17,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name' => 'Test User',
+                'email_verified_at' => now(),
+                'password' => bcrypt('password'),
+            ]
+        );
 
     // Seed Personal records
     $this->call(PersonalSeeder::class);
@@ -52,5 +56,11 @@ class DatabaseSeeder extends Seeder
     $this->call(\Database\Seeders\EcmDetmobSeeder::class);
     // Seed Software <-> Materias relations
     $this->call(\Database\Seeders\SoftwareMateriasSeeder::class);
+    // Seed Entradas
+    $this->call(\Database\Seeders\EntradasSeeder::class);
+        // Seed Entradas Detalle
+        $this->call(\Database\Seeders\EntradasDetalleSeeder::class);
+    // Seed Salidas detalle (sample)
+    $this->call(\Database\Seeders\SalidasDetalleSeeder::class);
     }
 }

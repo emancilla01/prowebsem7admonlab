@@ -1,7 +1,7 @@
 <nav
     class="navbar navbar-expand-sm navbar-dark bg-primary"
    >
-    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo e(url('/')); ?>">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo e(url('/dashboard')); ?>">
         <img src="<?php echo e(asset('logo.png')); ?>" alt="Logo" style="height:56px;" />        
     </a>
     
@@ -48,9 +48,33 @@
                 >
             </li>
             <li class="nav-item">
+                <a class="nav-link active" href="<?php echo e(url('/entradas')); ?>" aria-current="page"
+                    >Entradas <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="<?php echo e(route('salidas.index')); ?>" aria-current="page"
+                    >Salidas <span class="visually-hidden">(current)</span></a
+                >
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="<?php echo e(route('ecm_equcommob.index')); ?>" aria-current="page"
                     >ECM - Inventario <span class="visually-hidden">(current)</span></a
                 >
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="consultasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Consultas al inventario
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="consultasDropdown">
+                    <li><a class="dropdown-item" href="<?php echo e(route('consultas.categorias')); ?>">Por Categoría</a></li>
+                    <li><a class="dropdown-item" href="<?php echo e(route('consultas.personal')); ?>">Por Personal</a></li>
+                    <li><a class="dropdown-item" href="<?php echo e(route('consultas.espacios')); ?>">Por Espacios de Trabajo</a></li>
+                    <li><a class="dropdown-item" href="<?php echo e(route('consultas.software_equipo')); ?>">Software por Equipo</a></li>
+                    <li><a class="dropdown-item" href="<?php echo e(route('consultas.software_instalado')); ?>">Por Software instalado</a></li>
+                    <li><a class="dropdown-item" href="<?php echo e(route('consultas.grupos_software')); ?>">Por Grupos que solicitaron el Software</a></li>
+                    <li><a class="dropdown-item" href="<?php echo e(route('consultas.carreras_software')); ?>">Por Carreras que solicitaron el Software</a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="logout" aria-current="page"

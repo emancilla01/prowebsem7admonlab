@@ -13,6 +13,11 @@ class EcmEqucommobSeeder extends Seeder
     public function run(): void
     {
         // Create 20 sample ECM records. Assumes categorias are already seeded.
-        EcmEqucommob::factory()->count(20)->create();
+        for ($i = 0; $i < 20; $i++) {
+            $data = EcmEqucommob::factory()->make()->toArray();
+            EcmEqucommob::firstOrCreate([
+                'codigo' => $data['codigo'],
+            ], $data);
+        }
     }
 }

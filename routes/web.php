@@ -15,6 +15,7 @@ use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\GrupoAlumnoController;
 use App\Http\Controllers\GrupoLabController;
 use App\Http\Controllers\EcmEqucommobController;
+use App\Http\Controllers\ConsultasController;
 
 //original
 // Route::get('/', function () {
@@ -104,6 +105,28 @@ Route::delete('softwarematerias/{software_materia}', [App\Http\Controllers\Softw
 
 // Resource routes for Materias (CRUD)
 Route::resource('materias', MateriaController::class)->shallow();
+// Resource routes for Entradas (CRUD)
+Route::resource('entradas', App\Http\Controllers\EntradaController::class);
+// Nested resource for Entradas -> EntradasDetalle (fully nested)
+Route::resource('entradas.detalle', App\Http\Controllers\EntradaDetalleController::class);
+// Resource routes for Salidas (CRUD)
+Route::resource('salidas', App\Http\Controllers\SalidasController::class);
+// Consultas: por categoría
+Route::get('/consultas/categorias', [ConsultasController::class, 'porCategorias'])->name('consultas.categorias');
+// Consultas: por personal
+Route::get('/consultas/personal', [ConsultasController::class, 'porPersonal'])->name('consultas.personal');
+// Consultas: por espacios de trabajo
+Route::get('/consultas/espacios', [ConsultasController::class, 'porEspacios'])->name('consultas.espacios');
+// Consultas: software instalado por equipo de cómputo
+Route::get('/consultas/software-equipo', [ConsultasController::class, 'softwarePorEquipo'])->name('consultas.software_equipo');
+// Consultas: listado por software instalado (por fila)
+Route::get('/consultas/software-instalado', [ConsultasController::class, 'porSoftwareInstalado'])->name('consultas.software_instalado');
+// Consultas: por grupos que solicitaron el software
+Route::get('/consultas/grupos-software', [ConsultasController::class, 'porGrupos'])->name('consultas.grupos_software');
+// Consultas: por carreras que solicitaron el software
+Route::get('/consultas/carreras-software', [ConsultasController::class, 'porCarreras'])->name('consultas.carreras_software');
+// Nested resource for Salidas -> SalidasDetalle (fully nested)
+Route::resource('salidas.detalle', App\Http\Controllers\SalidaDetalleController::class);
 // Resource routes for Grupos
 Route::resource('grupos', GrupoController::class);
 // Nested resource routes for Grupo alumnos and labs (shallow routing)
