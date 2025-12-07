@@ -82,6 +82,10 @@ Route::get('/apipersonal/{letras?}', [PersonalController::class, 'apipersonal'])
 Route::get('/apigrupos', [GrupoController::class, 'apigrupos'])->name('apigrupos');
 Route::get('/apicategorias', [CategoriaController::class, 'apicategorias'])->name('apicategorias');
 Route::get('/apiperiodos', [PeriodoController::class, 'apiperiodos'])->name('apiperiodos');
+Route::get('/apigrupos/{grupo}/alumnos', [GrupoAlumnoController::class, 'apialumnos'])->name('apigrupos.alumnos');
+Route::get('/apicategorias/{categoria}/equipos', [EcmEqucommobController::class, 'apiequiposPorCategoria'])->name('apicategorias.equipos');
+Route::get('/apicategorias/{categoria}/mobiliario', [EcmEqucommobController::class, 'apimobiliarioPorCategoria'])->name('apicategorias.mobiliario');
+Route::get('/apiperiodos/{periodo}/grupos', [PeriodoController::class, 'apigrupos'])->name('apiperiodos.grupos');
 
 
 require __DIR__.'/settings.php';

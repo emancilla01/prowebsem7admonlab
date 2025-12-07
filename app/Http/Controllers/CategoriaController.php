@@ -96,6 +96,24 @@ class CategoriaController extends Controller
      */
     public function apicategorias()
     {
-        return response()->json(Categoria::all());
+        $q = request()->input('q');
+
+        $query = Categoria::query();
+        if ($q) {
+            $query->where('nombre', 'like', "%{$q}%")
+                  ->orWhere('descripcion', 'like', "%{$q}%");
+        }
+
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre') {
+            $query->orderBy('nombre', $dir);
+        } elseif ($sort === 'created_at') {
+            $query->orderBy('created_at', $dir);
+        }
+
+        $categorias = $query->paginate(15)->withQueryString();
+
+        return response()->json($categorias);
     }
 }

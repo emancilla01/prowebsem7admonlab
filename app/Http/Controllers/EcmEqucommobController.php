@@ -93,4 +93,20 @@ class EcmEqucommobController extends Controller
         $ecm_equcommob->delete();
         return Redirect::route('ecm_equcommob.index')->with('success', 'ECM eliminado.');
     }
+
+    /**
+     * Return JSON list of equipos for a given category
+     */
+    public function apiequiposPorCategoria(Categoria $categoria)
+    {
+        return response()->json(EcmEqucommob::where('id_categoria', $categoria->id)->where('tipo', 'equipo')->get());
+    }
+
+    /**
+     * Return JSON list of mobiliario for a given category
+     */
+    public function apimobiliarioPorCategoria(Categoria $categoria)
+    {
+        return response()->json(EcmEqucommob::where('id_categoria', $categoria->id)->where('tipo', 'mobiliario')->get());
+    }
 }

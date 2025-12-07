@@ -96,6 +96,33 @@ class PeriodoController extends Controller
      */
     public function apiperiodos()
     {
-        return response()->json(Periodo::all());
+        $q = request()->input('q');
+
+        $query = Periodo::query();
+        if ($q) {
+            $query->where('nombre', 'like', "%{$q}%");
+        }
+
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre') {
+            $query->orderBy('nombre', $dir);
+        } elseif ($sort === 'created_at') {
+            $query->orderBy('created_at', $dir);
+        }
+
+        $periodos = $query->paginate(15)->withQueryString();
+
+        return response()->json($periodos);
+    }
+
+    /**
+     * Return JSON list of grupos for a given periodo
+     */
+    public function apigrupos(Periodo $periodo)
+    {
+        $query = \App\Models\Grupo::where('id_periodo', $periodo->id)->with('materia');
+        $grupos = $query->paginate(15)->withQueryString();
+        return response()->json($grupos);
     }
 }

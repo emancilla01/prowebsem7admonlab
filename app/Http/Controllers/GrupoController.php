@@ -86,6 +86,21 @@ class GrupoController extends Controller
      */
     public function apigrupos()
     {
-        return response()->json(Grupo::with('materia')->get());
+        $q = request()->input('q');
+        $query = Grupo::with('materia');
+        if ($q) {
+            $query->where('nombre_grupo', 'like', "%{$q}%")
+                  ->orWhere('clave_grupo', 'like', "%{$q}%");
+        }
+
+        $sort = request()->input('sort');
+        $dir = request()->input('dir') === 'desc' ? 'desc' : 'asc';
+        if ($sort === 'nombre_grupo') {
+            $query->orderBy('nombre_grupo', $dir);
+        }
+
+        $grupos = $query->paginate(15)->withQueryString();
+
+        return response()->json($grupos);
     }
 }

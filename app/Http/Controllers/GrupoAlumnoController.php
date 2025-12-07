@@ -87,4 +87,12 @@ class GrupoAlumnoController extends Controller
         $alumno->delete();
         return redirect()->route('grupos.alumnos.index', $grupo)->with('success', 'Alumno eliminado.');
     }
+
+    /**
+     * Return JSON list of alumnos for a given grupo
+     */
+    public function apialumnos(Grupo $grupo)
+    {
+        return response()->json(GrupoAlumno::where('id_grupo', $grupo->id)->get());
+    }
 }

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Consultas con VUE API-Rest</h2>
+    <a href="/dashboard">Regresar al inicio</a>
     <nav style="margin-bottom:12px">
       <button @click="sel = 'grupos'">Grupos</button>
       <button @click="sel = 'categorias'">Categorías</button>
