@@ -76,6 +76,11 @@ Route::get('directivasvue', function () {
     return view('unidad3vesp/directivasvue');
 })->name('directivasvue');
 
+// Ruta para ver el avance del examen unidad 3 (Blade + Vite mount)
+Route::get('exam', function () {
+    return view('unidad3vesp/exam');
+})->name('exam');
+
 Route::get('/apipersonal/{letras?}', [PersonalController::class, 'apipersonal'])->name('apipersonal');
 
 // API-like routes (return JSON) for practica7 frontend
